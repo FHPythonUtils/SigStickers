@@ -42,6 +42,21 @@ async def downloadPack(packId, packKey):
 		) as file:
 			await file.write(sticker.image_data)
 
+
+	async with anyio.create_task_group() as taskGroup:
+		cwd = assureDirExists('downloads', root=os.getcwd())
+		swd = assureDirExists(pack.title, root=cwd)
+		webpDir = assureDirExists('webp', root=swd)
+		# Save the stickers
+		print('-' * 60)
+		for sticker in pack.stickers:
+			await taskGroup.spawn(saveSticker, sticker)
+		print(f"Starting download of \"{pack.title}\" into {swd}")
+		print()
+	return swd, pack.title
+
+async def convertPack(swd: str, packTitle:str):
+
 	async def convertStatic(inputFile: str):
 		"""Convert the webp file to png
 		Args:
@@ -51,33 +66,21 @@ async def downloadPack(packId, packKey):
 		"""
 		img = Image.open(inputFile)
 		img.save(inputFile.replace("webp", "png"))
+
 		try:
-			img.save(
-			inputFile.replace("webp", "gif"))
+			img.save(inputFile.replace("webp", "gif"), transparency=0, save_all=True, optimize=False)
 		except ValueError:
 			print("Failed to save {} as gif".format(inputFile))
 
+
+	webpDir = assureDirExists('webp', root=swd)
+	assureDirExists('png', root=swd)
+	assureDirExists('gif', root=swd)
+	# Convert the stickers
+	staticStickers = [opj(webpDir, i) for i in os.listdir(webpDir)]
+	print('-' * 60)
 	async with anyio.create_task_group() as taskGroup:
-		cwd = assureDirExists('downloads', root=os.getcwd())
-		swd = assureDirExists(pack.title, root=cwd)
-		webpDir = assureDirExists('webp', root=swd)
-		assureDirExists('png', root=swd)
-		assureDirExists('gif', root=swd)
-		# Save the stickers
-		print('-' * 60)
-		start = time.time()
-		for sticker in pack.stickers:
-			await taskGroup.spawn(saveSticker, sticker)
-		end  = time.time()
-		print(f"Starting download of \"{pack.title}\" into {swd}")
-		print()
-		# Convert the stickers
-		staticStickers = [opj(webpDir, i) for i in os.listdir(webpDir)
-		if i.endswith(".webp")] # yapf: disable
-		print('-' * 60)
-		start = time.time()
 		for sticker in staticStickers:
 			await taskGroup.spawn(convertStatic, sticker)
-		end  = time.time()
-		print(f"Starting conversion of \"{pack.title}\" into {swd}")
-		print()
+	print(f"Starting conversion of \"{packTitle}\" into {swd}")
+	print()

@@ -4,6 +4,7 @@
 
 - [Sigstickers](../README.md#sigstickers-index) / [Modules](../README.md#sigstickers-modules) / [sigstickers](index.md#sigstickers) / downloader
     - [assureDirExists](#assuredirexists)
+    - [convertPack](#convertpack)
     - [downloadPack](#downloadpack)
 
 ## assureDirExists
@@ -24,6 +25,14 @@ make the dir if not exists
 #### Returns
 
 - `str` - the full path
+
+## convertPack
+
+[[find in source code]](../../sigstickers/downloader.py#L58)
+
+```python
+async def convertPack(swd: str, packTitle: str):
+```
 
 ## downloadPack
 

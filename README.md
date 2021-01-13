@@ -55,15 +55,16 @@ See the [Docs](/DOCS/README.md) for more information.
 
 ## Formats
 
-|Format|Static|
-|------|------|
-|.gif  |✔     |
-|.png  |✔     |
-|.tgs  |❌    |
-|.webp |✔     |
+|Format|Static|Animated|
+|------|------|--------|
+|.gif  |✔$    |✔$      |
+|.png  |✔     |+       |
+|.webp |✔     |✔       |
 
-
-Note that static images can fail to save as .gif occasionally in testing
+```txt
++ The first frame of an animated image is saved as gif
+$ Some images saved as gif do not render as expected
+```
 
 ## Install With PIP
 
