@@ -16,7 +16,7 @@ def cli():
 		names = []
 		while True:
 			name = input("Enter sticker_set url (leave blank to stop): ").strip()
-			if name == '':
+			if name == "":
 				break
 			names.append(name)
 	names = [name.split("#pack_id=")[-1].split("&pack_key=") for name in names]

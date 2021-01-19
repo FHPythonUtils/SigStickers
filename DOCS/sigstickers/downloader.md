@@ -9,7 +9,7 @@
 
 ## assureDirExists
 
-[[find in source code]](../../sigstickers/downloader.py#L12)
+[[find in source code]](../../sigstickers/downloader.py#L13)
 
 ```python
 def assureDirExists(directory: str, root: str) -> str:
@@ -28,7 +28,7 @@ make the dir if not exists
 
 ## convertPack
 
-[[find in source code]](../../sigstickers/downloader.py#L58)
+[[find in source code]](../../sigstickers/downloader.py#L59)
 
 ```python
 async def convertPack(swd: str, packTitle: str):
@@ -36,7 +36,7 @@ async def convertPack(swd: str, packTitle: str):
 
 ## downloadPack
 
-[[find in source code]](../../sigstickers/downloader.py#L28)
+[[find in source code]](../../sigstickers/downloader.py#L29)
 
 ```python
 async def downloadPack(packId, packKey):
