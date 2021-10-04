@@ -43,14 +43,12 @@ Download sticker packs from Signal
 	- [Support](#support)
 	- [Rationale](#rationale)
 
-
 ## Using
 
 - Get the URL of the Signal sticker pack
 - Run the program `python -m sigstickers`
 - Enter the URL of the sticker pack
 - Get the output in the `downloads` folder.
-
 
 ## Formats
 
@@ -65,11 +63,11 @@ Download sticker packs from Signal
 $ Some images saved as gif do not render as expected
 ```
 
-
 ## Documentation
 See the [Docs](/DOCS/) for more information.
 
 ## Install With PIP
+
 ```python
 pip install sigstickers
 ```
@@ -83,26 +81,32 @@ Python version 3.9.0 <https://www.python.org/downloads/release/python-380/>.
 
 ## Install Python on Windows
 ### Chocolatey
+
 ```powershell
 choco install python
 ```
+
 ### Download
 To install Python, go to <https://www.python.org/> and download the latest
 version.
 
 ## Install Python on Linux
 ### Apt
+
 ```bash
 sudo apt install python3.9
 ```
 
 ## How to run
 ### With VSCode
+
 1. Open the .py file in vscode
 2. Ensure a python 3.9 interpreter is selected (Ctrl+Shift+P > Python:Select
 Interpreter > Python 3.9)
 3. Run by pressing Ctrl+F5 (if you are prompted to install any modules, accept)
+
 ### From the Terminal
+
 ```bash
 ./[file].py
 ```
@@ -110,19 +114,22 @@ Interpreter > Python 3.9)
 ## Download Project
 ### Clone
 #### Using The Command Line
+
 1. Press the Clone or download button in the top right
 2. Copy the URL (link)
 3. Open the command line and change directory to where you wish to
 clone to
 4. Type 'git clone' followed by URL in step 2
-```bash
-$ git clone https://github.com/FHPythonUtils/SigStickers
-```
+
+	```bash
+	git clone https://github.com/FHPythonUtils/SigStickers
+	```
 
 More information can be found at
 <https://help.github.com/en/articles/cloning-a-repository>
 
 #### Using GitHub Desktop
+
 1. Press the Clone or download button in the top right
 2. Click open in desktop
 3. Choose the path for where you want and click Clone

@@ -2,24 +2,28 @@
 
 > Auto-generated documentation for [sigstickers.downloader](../../sigstickers/downloader.py) module.
 
+Sticker download and convert functions used by the module entry point.
+
 - [Sigstickers](../README.md#sigstickers-index) / [Modules](../README.md#sigstickers-modules) / [sigstickers](index.md#sigstickers) / downloader
     - [assureDirExists](#assuredirexists)
     - [convertPack](#convertpack)
+    - [convertWithPIL](#convertwithpil)
     - [downloadPack](#downloadpack)
+    - [saveSticker](#savesticker)
 
 ## assureDirExists
 
-[[find in source code]](../../sigstickers/downloader.py#L13)
+[[find in source code]](../../sigstickers/downloader.py#L19)
 
 ```python
 def assureDirExists(directory: str, root: str) -> str:
 ```
 
-make the dir if not exists
+Make the dir if not exists
 
 #### Arguments
 
-- `dir` *str* - the directory name
+- `directory` *str* - the directory name
 - `root` *str* - the path of the root directory
 
 #### Returns
@@ -28,16 +32,72 @@ make the dir if not exists
 
 ## convertPack
 
-[[find in source code]](../../sigstickers/downloader.py#L59)
+[[find in source code]](../../sigstickers/downloader.py#L112)
 
 ```python
 async def convertPack(swd: str, packTitle: str):
 ```
 
-## downloadPack
+Convert the webp images into png and gif images
 
-[[find in source code]](../../sigstickers/downloader.py#L29)
+#### Arguments
+
+- `swd` *str* - name of the directory to convert
+- `packTitle` *str* - name of the sticker pack (for cache + logging)
+
+## convertWithPIL
+
+[[find in source code]](../../sigstickers/downloader.py#L93)
 
 ```python
-async def downloadPack(packId, packKey):
+def convertWithPIL(inputFile: str) -> str:
 ```
+
+Convert the webp file to png
+
+#### Arguments
+
+- `inputFile` *str* - path to input file
+
+#### Returns
+
+- `str` - path to input file
+
+## downloadPack
+
+[[find in source code]](../../sigstickers/downloader.py#L57)
+
+```python
+async def downloadPack(packId: str, packKey: str) -> tuple[(str, str)]:
+```
+
+Download a sticker pack.
+
+#### Arguments
+
+- `packId` *str* - pack_id from url param. eg b676ec334ee2f771cadff5d095971e8c
+- `packKey` *str* - pack_key from url param. eg
+c957a57000626a2dc3cb69bf0e79c91c6b196b74d4d6ca1cbb830d3ad0ad4e36
+
+#### Returns
+
+- `tuple[str,` *str]* - sticker working directory and pack title
+
+## saveSticker
+
+[[find in source code]](../../sigstickers/downloader.py#L38)
+
+```python
+def saveSticker(sticker: Sticker, path: str) -> str:
+```
+
+Save a sticker
+
+#### Arguments
+
+- `sticker` *Sticker* - the sticker object
+- `path` *str* - the path to write to
+
+#### Returns
+
+- `str` - the filepath the file was written to

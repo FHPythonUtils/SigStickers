@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sigstickers"
-version = "2021.1"
+version = "2021.2"
 description = "Download sticker packs from Signal"
 authors = ["FredHappyface"]
 classifiers = [
@@ -35,5 +35,38 @@ emoji = "<2,>=0.6.0"
 sigstickers = "sigstickers:cli"
 
 [build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pylint.basic]
+argument-naming-style = "camelCase"
+attr-naming-style = "camelCase"
+function-naming-style = "camelCase"
+method-naming-style = "camelCase"
+variable-naming-style = "camelCase"
+
+[tool.pylint.format]
+indent-string = "\t"
+
+[tool.pylint.master]
+ignore-patterns = "test_.*?py"
+
+[tool.pylint.messages_control]
+enable = ['F', 'E', 'W', 'R', 'C']
+disable = [
+	"pointless-string-statement",
+	"superfluous-parens",
+	"bad-continuation",
+	"python3",
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py37"]
+
+[tool.isort]
+profile = "black"
+
+[tool.pydocstyle]
+convention = "google"
+ignore = "D205,D415"

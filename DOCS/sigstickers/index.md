@@ -8,11 +8,12 @@ Download sticker packs from Signal
     - [cli](#cli)
     - Modules
         - [\_\_main\_\_](module.md#__main__)
+        - [caching](caching.md#caching)
         - [downloader](downloader.md#downloader)
 
 ## cli
 
-[[find in source code]](../../sigstickers/__init__.py#L8)
+[[find in source code]](../../sigstickers/__init__.py#L9)
 
 ```python
 def cli():
