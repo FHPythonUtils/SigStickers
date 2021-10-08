@@ -16,6 +16,7 @@
 Download sticker packs from Signal
 
 - [Using](#using)
+	- [Help](#help)
 - [Formats](#formats)
 - [Documentation](#documentation)
 - [Install With PIP](#install-with-pip)
@@ -49,6 +50,17 @@ Download sticker packs from Signal
 - Run the program `python -m sigstickers`
 - Enter the URL of the sticker pack
 - Get the output in the `downloads` folder.
+
+### Help
+
+```sh
+usage: Welcome to SigSticker, providing all of your sticker needs [-h] [-p PACK [PACK ...]]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -p PACK [PACK ...], --pack PACK [PACK ...]
+                        Pass in a pack url inline
+```
 
 ## Formats
 

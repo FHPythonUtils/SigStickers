@@ -9,10 +9,16 @@ from .downloader import convertPack, downloadPack
 def cli():
 	"""cli entry point"""
 	parser = argparse.ArgumentParser("Welcome to SigSticker, providing all of your sticker needs")
-	parser.add_argument("-p", "--pack", help="Pass in a pack url inline", action="append")
+	parser.add_argument(
+		"-p",
+		"--pack",
+		help="Pass in a pack url inline",
+		nargs="+",
+		action="append",
+	)
 	args = parser.parse_args()
 	# Get the packs
-	packs = args.pack
+	packs = sum(args.pack, [])
 	if packs is None:
 		packs = []
 		while True:
