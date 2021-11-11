@@ -64,11 +64,11 @@ optional arguments:
 
 ## Formats
 
-|Format|Static|Animated|
-|------|------|--------|
-|.gif  |✔$    |✔$      |
-|.png  |✔     |+       |
-|.webp |✔     |✔       |
+| Format | Static | Animated |
+| ------ | ------ | -------- |
+| .gif   | ✔$     | ✔$       |
+| .png   | ✔      | +        |
+| .webp  | ✔      | ✔        |
 
 ```txt
 + The first frame of an animated image is saved as gif
@@ -76,6 +76,7 @@ $ Some images saved as gif do not render as expected
 ```
 
 ## Documentation
+
 See the [Docs](/DOCS/) for more information.
 
 ## Install With PIP
@@ -89,6 +90,7 @@ Head to https://pypi.org/project/sigstickers/ for more info
 ## Language information
 
 ### Built for
+
 This program has been written for Python versions 3.7 - 3.10 and has been tested with both 3.7 and
 3.10
 
@@ -101,6 +103,7 @@ choco install python
 ```
 
 ### Windows - Python.org
+
 To install Python, go to https://www.python.org/downloads/windows/ and download the latest
 version.
 
@@ -127,6 +130,7 @@ brew install python@3.x
 ```
 
 ### MacOS - Python.org
+
 To install Python, go to https://www.python.org/downloads/macos/ and download the latest
 version.
 
@@ -185,14 +189,17 @@ https://help.github.com/en/desktop/contributing-to-projects/cloning-a-repository
 ## Community Files
 
 ### Licence
+
 MIT License
 Copyright (c) FredHappyface
 (See the [LICENSE](/LICENSE.md) for more information.)
 
 ### Changelog
+
 See the [Changelog](/CHANGELOG.md) for more information.
 
 ### Code of Conduct
+
 Online communities include people from many backgrounds. The *Project*
 contributors are committed to providing a friendly, safe and welcoming
 environment for all. Please see the
@@ -200,16 +207,19 @@ environment for all. Please see the
  for more information.
 
 ### Contributing
+
 Contributions are welcome, please see the
 [Contributing Guidelines](https://github.com/FHPythonUtils/.github/blob/master/CONTRIBUTING.md)
 for more information.
 
 ### Security
+
 Thank you for improving the security of the project, please see the
 [Security Policy](https://github.com/FHPythonUtils/.github/blob/master/SECURITY.md)
 for more information.
 
 ### Support
+
 Thank you for using this project, I hope it is of use to you. Please be aware that
 those involved with the project often do so for fun along with other commitments
 (such as work, family, etc). Please see the
@@ -217,6 +227,7 @@ those involved with the project often do so for fun along with other commitments
 for more information.
 
 ### Rationale
+
 The rationale acts as a guide to various processes regarding projects such as
 the versioning scheme and the programming styles used. Please see the
 [Rationale](https://github.com/FHPythonUtils/.github/blob/master/RATIONALE.md)
