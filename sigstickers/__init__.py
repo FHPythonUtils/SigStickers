@@ -1,5 +1,7 @@
 """Download sticker packs from Signal
 """
+from __future__ import annotations
+
 import argparse
 import asyncio
 

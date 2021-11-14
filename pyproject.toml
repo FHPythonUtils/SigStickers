@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sigstickers"
-version = "2021.2.1"
+version = "2021.2.2"
 license = "mit"
 description = "Download sticker packs from Signal"
 authors = ["FredHappyface"]

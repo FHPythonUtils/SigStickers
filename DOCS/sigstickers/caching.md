@@ -10,7 +10,7 @@ Sticker caching functionality used by the downloader.
 
 ## createConverted
 
-[[find in source code]](../../sigstickers/caching.py#L50)
+[[find in source code]](../../sigstickers/caching.py#L52)
 
 ```python
 def createConverted(packName: str, data: dict):
@@ -25,7 +25,7 @@ Write cache data to a file identified by packName
 
 ## verifyConverted
 
-[[find in source code]](../../sigstickers/caching.py#L12)
+[[find in source code]](../../sigstickers/caching.py#L14)
 
 ```python
 def verifyConverted(packName: str) -> bool:
