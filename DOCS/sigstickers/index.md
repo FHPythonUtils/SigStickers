@@ -13,7 +13,7 @@ Download sticker packs from Signal
 
 ## cli
 
-[[find in source code]](../../sigstickers/__init__.py#L11)
+[[find in source code]](../../sigstickers/__init__.py#L12)
 
 ```python
 def cli():

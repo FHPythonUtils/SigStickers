@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+from sys import exit as sysexit
 
 from .downloader import convertPack, downloadPack
 
@@ -20,8 +21,8 @@ def cli():
 	)
 	args = parser.parse_args()
 	# Get the packs
-	packs = sum(args.pack, [])
-	if packs is None:
+	packs = sum(args.pack or [[]], [])
+	if len(packs) == 0:
 		packs = []
 		while True:
 			name = input("Enter sticker_set url (leave blank to stop): ").strip()
@@ -30,6 +31,13 @@ def cli():
 			packs.append(name)
 	for pack in packs:
 		packAttrs = pack.split("#pack_id=")[-1].split("&pack_key=")
+		if len(packAttrs) < 2:
+			print(
+				"Sticker URLs need a pack_id and pack_key. Eg. https://signal.art/"
+				"addstickers/#pack_id=9acc9e8aba563d26a4994e69263e3b25&"
+				"pack_key=5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+			)
+			sysexit(1)
 		asyncio.run(convertPack(*asyncio.run(downloadPack(*packAttrs))))
 
 
