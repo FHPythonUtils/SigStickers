@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 from sys import exit as sysexit
+from urllib import parse
 
 from .downloader import convertPack, downloadPack
 
@@ -30,15 +31,21 @@ def cli():
 				break
 			packs.append(name)
 	for pack in packs:
-		packAttrs = pack.split("#pack_id=")[-1].split("&pack_key=")
-		if len(packAttrs) < 2:
+		packAttrs = parse.parse_qs(parse.urlparse(pack).fragment)
+		if packAttrs.keys() < {"pack_id", "pack_key"}:
 			print(
 				"Sticker URLs need a pack_id and pack_key. Eg. https://signal.art/"
 				"addstickers/#pack_id=9acc9e8aba563d26a4994e69263e3b25&"
 				"pack_key=5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
 			)
 			sysexit(1)
-		asyncio.run(convertPack(*asyncio.run(downloadPack(*packAttrs))))
+		asyncio.run(
+			convertPack(
+				*asyncio.run(
+					downloadPack("".join(packAttrs["pack_id"]), "".join(packAttrs["pack_key"]))
+				)
+			)
+		)
 
 
 if __name__ == "__main__":

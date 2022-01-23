@@ -3,6 +3,12 @@
 All major and minor version changes will be documented in this file. Details of
 patch-level version changes can be found in [commit messages](../../commits/master).
 
+## 2022 - 2022/01/23
+
+- Improvements to saving gifs
+- Bump pillow version (CVE-2022-22815, CVE-2022-22816, CVE-2022-22817)
+- Use urllib.parse to parse urls in place of string splitting
+
 ## 2021.2.3 - 2021/12/10
 
 - Fix https://github.com/FHPythonUtils/SigStickers/issues/1
