@@ -103,7 +103,9 @@ def convertWithPIL(inputFile: str) -> str:
 	img.save(inputFile.replace("webp", "png"))
 
 	try:
-		img.save(inputFile.replace("webp", "gif"), version="GIF89a", disposal=2, save_all=True)
+		img.save(
+			inputFile.replace("webp", "gif"), version="GIF89a", disposal=2, save_all=True, loop=0
+		)
 	except ValueError:
 		print(f"Failed to save {inputFile} as gif")
 	return inputFile
