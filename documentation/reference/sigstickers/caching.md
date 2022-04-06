@@ -1,16 +1,16 @@
-# caching
+# Caching
 
-> Auto-generated documentation for [sigstickers.caching](../../sigstickers/caching.py) module.
+> Auto-generated documentation for [sigstickers.caching](../../../sigstickers/caching.py) module.
 
 Sticker caching functionality used by the downloader.
 
-- [Sigstickers](../README.md#sigstickers-index) / [Modules](../README.md#sigstickers-modules) / [sigstickers](index.md#sigstickers) / caching
+- [Sigstickers](../README.md#sigstickers-index) / [Modules](../MODULES.md#sigstickers-modules) / [Sigstickers](index.md#sigstickers) / Caching
     - [createConverted](#createconverted)
     - [verifyConverted](#verifyconverted)
 
 ## createConverted
 
-[[find in source code]](../../sigstickers/caching.py#L52)
+[[find in source code]](../../../sigstickers/caching.py#L52)
 
 ```python
 def createConverted(packName: str, data: dict):
@@ -25,7 +25,7 @@ Write cache data to a file identified by packName
 
 ## verifyConverted
 
-[[find in source code]](../../sigstickers/caching.py#L14)
+[[find in source code]](../../../sigstickers/caching.py#L14)
 
 ```python
 def verifyConverted(packName: str) -> bool:

@@ -1,10 +1,10 @@
-# downloader
+# Downloader
 
-> Auto-generated documentation for [sigstickers.downloader](../../sigstickers/downloader.py) module.
+> Auto-generated documentation for [sigstickers.downloader](../../../sigstickers/downloader.py) module.
 
 Sticker download and convert functions used by the module entry point.
 
-- [Sigstickers](../README.md#sigstickers-index) / [Modules](../README.md#sigstickers-modules) / [sigstickers](index.md#sigstickers) / downloader
+- [Sigstickers](../README.md#sigstickers-index) / [Modules](../MODULES.md#sigstickers-modules) / [Sigstickers](index.md#sigstickers) / Downloader
     - [assureDirExists](#assuredirexists)
     - [convertPack](#convertpack)
     - [convertWithPIL](#convertwithpil)
@@ -13,7 +13,7 @@ Sticker download and convert functions used by the module entry point.
 
 ## assureDirExists
 
-[[find in source code]](../../sigstickers/downloader.py#L19)
+[[find in source code]](../../../sigstickers/downloader.py#L19)
 
 ```python
 def assureDirExists(directory: str, root: str) -> str:
@@ -32,7 +32,7 @@ Make the dir if not exists
 
 ## convertPack
 
-[[find in source code]](../../sigstickers/downloader.py#L112)
+[[find in source code]](../../../sigstickers/downloader.py#L114)
 
 ```python
 async def convertPack(swd: str, packTitle: str):
@@ -47,7 +47,7 @@ Convert the webp images into png and gif images
 
 ## convertWithPIL
 
-[[find in source code]](../../sigstickers/downloader.py#L93)
+[[find in source code]](../../../sigstickers/downloader.py#L93)
 
 ```python
 def convertWithPIL(inputFile: str) -> str:
@@ -65,10 +65,10 @@ Convert the webp file to png
 
 ## downloadPack
 
-[[find in source code]](../../sigstickers/downloader.py#L57)
+[[find in source code]](../../../sigstickers/downloader.py#L57)
 
 ```python
-async def downloadPack(packId: str, packKey: str) -> tuple[(str, str)]:
+async def downloadPack(packId: str, packKey: str) -> tuple[str, str]:
 ```
 
 Download a sticker pack.
@@ -85,7 +85,7 @@ c957a57000626a2dc3cb69bf0e79c91c6b196b74d4d6ca1cbb830d3ad0ad4e36
 
 ## saveSticker
 
-[[find in source code]](../../sigstickers/downloader.py#L38)
+[[find in source code]](../../../sigstickers/downloader.py#L38)
 
 ```python
 def saveSticker(sticker: Sticker, path: str) -> str:
