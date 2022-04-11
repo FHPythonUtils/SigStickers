@@ -10,7 +10,7 @@ from urllib import parse
 from .downloader import convertPack, downloadPack
 
 
-def cli():
+def cli():  # pragma: no cover
 	"""cli entry point"""
 	parser = argparse.ArgumentParser("Welcome to SigSticker, providing all of your sticker needs")
 	parser.add_argument(
@@ -48,5 +48,5 @@ def cli():
 		)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
 	cli()

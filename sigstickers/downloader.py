@@ -54,13 +54,14 @@ def saveSticker(sticker: Sticker, path: str) -> str:
 	return filePath
 
 
-async def downloadPack(packId: str, packKey: str) -> tuple[str, str]:
+async def downloadPack(packId: str, packKey: str, cwd: str = os.getcwd()) -> tuple[str, str]:
 	"""Download a sticker pack.
 
 	Args:
 		packId (str): pack_id from url param. eg b676ec334ee2f771cadff5d095971e8c
 		packKey (str): pack_key from url param. eg
 		c957a57000626a2dc3cb69bf0e79c91c6b196b74d4d6ca1cbb830d3ad0ad4e36
+		cwd (str, optional): set the current working directory
 
 	Returns:
 		tuple[str, str]: sticker working directory and pack title
@@ -69,25 +70,25 @@ async def downloadPack(packId: str, packKey: str) -> tuple[str, str]:
 	start = time.time()
 	async with StickersClient() as client:
 		pack = await client.get_pack(packId, packKey)
-		packtitle = cast(str, pack.title)
+		packName = cast(str, pack.title)
 		end = time.time()
-		print(f'Starting to scrape "{packtitle}" ...')
+		print(f'Starting to scrape "{packName}" ...')
 		print(f"Time taken to scrape {pack.nb_stickers} stickers - {end - start:.3f}s")
 		print()
 
-	swd = assureDirExists(packtitle, root=assureDirExists("downloads", root=os.getcwd()))
+	swd = assureDirExists(packName, root=assureDirExists("downloads", root=cwd))
 	webpDir = assureDirExists("webp", root=swd)
 
 	# Save the stickers
 	print("-" * 60)
-	print(f'Starting download of "{packtitle}" into {swd}')
+	print(f'Starting download of "{packName}" into {swd}')
 	with ThreadPoolExecutor(max_workers=4) as executor:
 		for i in as_completed(
 			[executor.submit(saveSticker, sticker, webpDir) for sticker in pack.stickers]
 		):
 			i.result()
 
-	return swd, packtitle
+	return swd, packName
 
 
 def convertWithPIL(inputFile: str) -> str:
@@ -111,45 +112,45 @@ def convertWithPIL(inputFile: str) -> str:
 	return inputFile
 
 
-async def convertPack(swd: str, packTitle: str):
+async def convertPack(swd: str, packName: str, noCache=False):
 	"""Convert the webp images into png and gif images
 
 	Args:
 		swd (str): name of the directory to convert
-		packTitle (str): name of the sticker pack (for cache + logging)
+		packName (str): name of the sticker pack (for cache + logging)
+		noCache (bool, optional): set to true to disable cache. Defaults to False.
 	"""
 	print("-" * 60)
-	if not verifyConverted(packTitle):
-		webpDir = assureDirExists("webp", root=swd)
-		assureDirExists("png", root=swd)
-		assureDirExists("gif", root=swd)
+	if not noCache and verifyConverted(packName):
+		return
+	webpDir = assureDirExists("webp", root=swd)
+	assureDirExists("png", root=swd)
+	assureDirExists("gif", root=swd)
 
-		# Convert stickers
-		start = time.time()
-		print(f'Converting stickers "{packTitle}"...')
-		converted = 0
-		stickers = [opj(webpDir, i) for i in os.listdir(webpDir)]
-		total = len(stickers)
-		with ThreadPoolExecutor(max_workers=4) as executor:
-			for _ in as_completed(
-				[executor.submit(convertWithPIL, sticker) for sticker in stickers]
-			):
-				converted += 1
-		end = time.time()
-		print(f"Time taken to convert {converted}/{total} stickers - {end - start:.3f}s")
+	# Convert stickers
+	start = time.time()
+	print(f'Converting stickers "{packName}"...')
+	converted = 0
+	stickers = [opj(webpDir, i) for i in os.listdir(webpDir)]
+	total = len(stickers)
+	with ThreadPoolExecutor(max_workers=4) as executor:
+		for _ in as_completed([executor.submit(convertWithPIL, sticker) for sticker in stickers]):
+			converted += 1
+	end = time.time()
+	print(f"Time taken to convert {converted}/{total} stickers - {end - start:.3f}s")
 
-		print()
-		createConverted(
-			packTitle,
-			data={
-				"version": 1,
-				"info": {
-					"packName": packTitle,
-					"swd": swd,
-				},
-				"converted": {
-					"converted": converted,
-					"total": total,
-				},
+	print()
+	createConverted(
+		packName,
+		data={
+			"version": 1,
+			"info": {
+				"packName": packName,
+				"swd": swd,
 			},
-		)
+			"converted": {
+				"converted": converted,
+				"total": total,
+			},
+		},
+	)

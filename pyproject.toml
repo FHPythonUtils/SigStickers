@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sigstickers"
-version = "2022"
+version = "2022.1"
 license = "mit"
 description = "Download sticker packs from Signal"
 authors = ["FredHappyface"]
@@ -22,13 +22,18 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-Pillow = "<10,>=9.0.0"
-signalstickers-client = "<5,>=3.0.0"
-anyio = "<4,>=2.0.2"
-emoji = "<2,>=0.6.0"
+Pillow = "<10,>=9.1.0"
+signalstickers-client = "<4,>=3.1.0"
+emoji = "<2,>=1.7.0"
 
 [tool.poetry.scripts]
 sigstickers = "sigstickers:cli"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.1"
+coverage = "^6.3.2"
+handsdown = "^1.1.0"
+pylint = "^2.13.5"
 
 [build-system]
 requires = ["poetry-core"]

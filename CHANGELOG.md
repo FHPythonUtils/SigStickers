@@ -3,6 +3,11 @@
 All major and minor version changes will be documented in this file. Details of
 patch-level version changes can be found in [commit messages](../../commits/master).
 
+## 2022.1 - 2022/04/11
+
+- Tests and code improvements
+- Update pre-commit
+
 ## 2022 - 2022/01/23
 
 - Improvements to saving gifs
