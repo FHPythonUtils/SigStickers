@@ -1,10 +1,9 @@
-# Sigstickers Modules
+# Sigstickers Index
 
-> Auto-generated documentation modules index.
+> Auto-generated documentation index.
 
-Full list of [Sigstickers](README.md#sigstickers-index) project modules.
+A full list of `Sigstickers` project modules.
 
-- [Sigstickers Index](README.md#sigstickers-index)
 - [Sigstickers](sigstickers/index.md#sigstickers)
     - [Module](sigstickers/module.md#module)
     - [Caching](sigstickers/caching.md#caching)

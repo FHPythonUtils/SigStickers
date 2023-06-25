@@ -1,23 +1,21 @@
 # Downloader
 
+[Sigstickers Index](../README.md#sigstickers-index) /
+[Sigstickers](./index.md#sigstickers) /
+Downloader
+
 > Auto-generated documentation for [sigstickers.downloader](../../../sigstickers/downloader.py) module.
 
-Sticker download and convert functions used by the module entry point.
-
-- [Sigstickers](../README.md#sigstickers-index) / [Modules](../MODULES.md#sigstickers-modules) / [Sigstickers](index.md#sigstickers) / Downloader
-    - [assureDirExists](#assuredirexists)
-    - [convertPack](#convertpack)
-    - [convertWithPIL](#convertwithpil)
-    - [downloadPack](#downloadpack)
-    - [saveSticker](#savesticker)
+- [Downloader](#downloader)
+  - [assureDirExists](#assuredirexists)
+  - [convertPack](#convertpack)
+  - [convertWithPIL](#convertwithpil)
+  - [downloadPack](#downloadpack)
+  - [saveSticker](#savesticker)
 
 ## assureDirExists
 
-[[find in source code]](../../../sigstickers/downloader.py#L19)
-
-```python
-def assureDirExists(directory: str, root: str) -> str:
-```
+[Show source in downloader.py:19](../../../sigstickers/downloader.py#L19)
 
 Make the dir if not exists
 
@@ -30,13 +28,18 @@ Make the dir if not exists
 
 - `str` - the full path
 
-## convertPack
-
-[[find in source code]](../../../sigstickers/downloader.py#L115)
+#### Signature
 
 ```python
-async def convertPack(swd: str, packName: str, noCache=False):
+def assureDirExists(directory: str, root: str) -> str:
+    ...
 ```
+
+
+
+## convertPack
+
+[Show source in downloader.py:112](../../../sigstickers/downloader.py#L112)
 
 Convert the webp images into png and gif images
 
@@ -46,13 +49,18 @@ Convert the webp images into png and gif images
 - `packName` *str* - name of the sticker pack (for cache + logging)
 - `noCache` *bool, optional* - set to true to disable cache. Defaults to False.
 
-## convertWithPIL
-
-[[find in source code]](../../../sigstickers/downloader.py#L94)
+#### Signature
 
 ```python
-def convertWithPIL(inputFile: str) -> str:
+async def convertPack(swd: str, packName: str, noCache=False):
+    ...
 ```
+
+
+
+## convertWithPIL
+
+[Show source in downloader.py:91](../../../sigstickers/downloader.py#L91)
 
 Convert the webp file to png
 
@@ -64,17 +72,18 @@ Convert the webp file to png
 
 - `str` - path to input file
 
-## downloadPack
-
-[[find in source code]](../../../sigstickers/downloader.py#L57)
+#### Signature
 
 ```python
-async def downloadPack(
-    packId: str,
-    packKey: str,
-    cwd: str = os.getcwd(),
-) -> tuple[str, str]:
+def convertWithPIL(inputFile: str) -> str:
+    ...
 ```
+
+
+
+## downloadPack
+
+[Show source in downloader.py:54](../../../sigstickers/downloader.py#L54)
 
 Download a sticker pack.
 
@@ -89,13 +98,20 @@ c957a57000626a2dc3cb69bf0e79c91c6b196b74d4d6ca1cbb830d3ad0ad4e36
 
 - `tuple[str,` *str]* - sticker working directory and pack title
 
-## saveSticker
-
-[[find in source code]](../../../sigstickers/downloader.py#L38)
+#### Signature
 
 ```python
-def saveSticker(sticker: Sticker, path: str) -> str:
+async def downloadPack(
+    packId: str, packKey: str, cwd: str = os.getcwd()
+) -> tuple[str, str]:
+    ...
 ```
+
+
+
+## saveSticker
+
+[Show source in downloader.py:35](../../../sigstickers/downloader.py#L35)
 
 Save a sticker
 
@@ -107,3 +123,12 @@ Save a sticker
 #### Returns
 
 - `str` - the filepath the file was written to
+
+#### Signature
+
+```python
+def saveSticker(sticker: Sticker, path: str) -> str:
+    ...
+```
+
+

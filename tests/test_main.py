@@ -23,12 +23,16 @@ packs = [
 
 
 def test_downloadPack():
-	swd, packName = asyncio.run(downloader.downloadPack(packs[0]["packId"], packs[0]["packKey"], cwd))
+	swd, packName = asyncio.run(
+		downloader.downloadPack(packs[0]["packId"], packs[0]["packKey"], cwd)
+	)
 	assert swd.replace("\\", "/"), packName == (f"{cwd}/downloads/DonutTheDog", "DonutTheDog")
 	assert len(list(Path(f"{cwd}/downloads/DonutTheDog/webp").iterdir())) == packs[0]["len"]
 
 
 def test_convertPack():
-	swd, packName = asyncio.run(downloader.downloadPack(packs[0]["packId"], packs[0]["packKey"], cwd))
+	swd, packName = asyncio.run(
+		downloader.downloadPack(packs[0]["packId"], packs[0]["packKey"], cwd)
+	)
 	asyncio.run(downloader.convertPack(swd, packName, noCache=True))
 	assert len(list(Path(f"{cwd}/downloads/DonutTheDog/png").iterdir())) == packs[0]["len"]

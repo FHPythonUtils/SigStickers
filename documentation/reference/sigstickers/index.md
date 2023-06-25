@@ -1,22 +1,31 @@
 # Sigstickers
 
+[Sigstickers Index](../README.md#sigstickers-index) /
+Sigstickers
+
 > Auto-generated documentation for [sigstickers](../../../sigstickers/__init__.py) module.
 
-Download sticker packs from Signal
-
-- [Sigstickers](../README.md#sigstickers-index) / [Modules](../MODULES.md#sigstickers-modules) / Sigstickers
-    - [cli](#cli)
-    - Modules
-        - [Module](module.md#module)
-        - [Caching](caching.md#caching)
-        - [Downloader](downloader.md#downloader)
+- [Sigstickers](#sigstickers)
+  - [cli](#cli)
+  - [Modules](#modules)
 
 ## cli
 
-[[find in source code]](../../../sigstickers/__init__.py#L13)
+[Show source in __init__.py:13](../../../sigstickers/__init__.py#L13)
+
+cli entry point
+
+#### Signature
 
 ```python
 def cli():
+    ...
 ```
 
-cli entry point
+
+
+## Modules
+
+- [Module](./module.md)
+- [Caching](./caching.md)
+- [Downloader](./downloader.md)

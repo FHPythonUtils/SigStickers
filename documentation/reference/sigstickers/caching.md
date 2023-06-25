@@ -1,20 +1,18 @@
 # Caching
 
+[Sigstickers Index](../README.md#sigstickers-index) /
+[Sigstickers](./index.md#sigstickers) /
+Caching
+
 > Auto-generated documentation for [sigstickers.caching](../../../sigstickers/caching.py) module.
 
-Sticker caching functionality used by the downloader.
-
-- [Sigstickers](../README.md#sigstickers-index) / [Modules](../MODULES.md#sigstickers-modules) / [Sigstickers](index.md#sigstickers) / Caching
-    - [createConverted](#createconverted)
-    - [verifyConverted](#verifyconverted)
+- [Caching](#caching)
+  - [createConverted](#createconverted)
+  - [verifyConverted](#verifyconverted)
 
 ## createConverted
 
-[[find in source code]](../../../sigstickers/caching.py#L52)
-
-```python
-def createConverted(packName: str, data: dict):
-```
+[Show source in caching.py:52](../../../sigstickers/caching.py#L52)
 
 Write cache data to a file identified by packName
 
@@ -23,13 +21,18 @@ Write cache data to a file identified by packName
 - `packName` *str* - name of the sticker pack eg. "DonutTheDog"
 - `data` *dict* - packName cache data to write to cache
 
-## verifyConverted
-
-[[find in source code]](../../../sigstickers/caching.py#L14)
+#### Signature
 
 ```python
-def verifyConverted(packName: str) -> bool:
+def createConverted(packName: str, data: dict):
+    ...
 ```
+
+
+
+## verifyConverted
+
+[Show source in caching.py:14](../../../sigstickers/caching.py#L14)
 
 Verify the cache for a packName eg. "DonutTheDog". Uses the cache "version"
 to call the verify function for that version
@@ -41,3 +44,12 @@ to call the verify function for that version
 #### Returns
 
 - `bool` - if the converted cache has been verified
+
+#### Signature
+
+```python
+def verifyConverted(packName: str) -> bool:
+    ...
+```
+
+

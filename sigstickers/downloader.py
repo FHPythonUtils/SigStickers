@@ -27,10 +27,7 @@ def assureDirExists(directory: str, root: str) -> str:
 		str: the full path
 	"""
 	fullPath = opj(root, directory)
-	if os.path.isdir(fullPath):
-		pass
-	else:
-		os.mkdir(fullPath)
+	os.makedirs(fullPath, exist_ok=True)
 
 	return fullPath
 
