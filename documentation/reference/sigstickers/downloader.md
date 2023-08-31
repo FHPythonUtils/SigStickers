@@ -130,5 +130,3 @@ Save a sticker
 def saveSticker(sticker: Sticker, path: str) -> str:
     ...
 ```
-
-

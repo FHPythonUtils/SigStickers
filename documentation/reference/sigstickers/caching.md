@@ -51,5 +51,3 @@ to call the verify function for that version
 def verifyConverted(packName: str) -> bool:
     ...
 ```
-
-
