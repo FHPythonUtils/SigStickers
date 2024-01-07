@@ -24,8 +24,7 @@ Write cache data to a file identified by packName
 #### Signature
 
 ```python
-def createConverted(packName: str, data: dict):
-    ...
+def createConverted(packName: str, data: dict): ...
 ```
 
 
@@ -48,6 +47,5 @@ to call the verify function for that version
 #### Signature
 
 ```python
-def verifyConverted(packName: str) -> bool:
-    ...
+def verifyConverted(packName: str) -> bool: ...
 ```

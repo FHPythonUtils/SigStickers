@@ -31,8 +31,7 @@ Make the dir if not exists
 #### Signature
 
 ```python
-def assureDirExists(directory: str, root: str) -> str:
-    ...
+def assureDirExists(directory: str, root: str) -> str: ...
 ```
 
 
@@ -52,8 +51,7 @@ Convert the webp images into png and gif images
 #### Signature
 
 ```python
-async def convertPack(swd: str, packName: str, noCache=False):
-    ...
+async def convertPack(swd: str, packName: str, noCache=False): ...
 ```
 
 
@@ -75,8 +73,7 @@ Convert the webp file to png
 #### Signature
 
 ```python
-def convertWithPIL(inputFile: str) -> str:
-    ...
+def convertWithPIL(inputFile: str) -> str: ...
 ```
 
 
@@ -103,8 +100,7 @@ c957a57000626a2dc3cb69bf0e79c91c6b196b74d4d6ca1cbb830d3ad0ad4e36
 ```python
 async def downloadPack(
     packId: str, packKey: str, cwd: str = os.getcwd()
-) -> tuple[str, str]:
-    ...
+) -> tuple[str, str]: ...
 ```
 
 
@@ -127,6 +123,5 @@ Save a sticker
 #### Signature
 
 ```python
-def saveSticker(sticker: Sticker, path: str) -> str:
-    ...
+def saveSticker(sticker: Sticker, path: str) -> str: ...
 ```
