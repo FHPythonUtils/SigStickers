@@ -1,7 +1,6 @@
 # Sigstickers
 
-[Sigstickers Index](../README.md#sigstickers-index) /
-Sigstickers
+[Sigstickers Index](../README.md#sigstickers-index) / Sigstickers
 
 > Auto-generated documentation for [sigstickers](../../../sigstickers/__init__.py) module.
 

@@ -1,14 +1,35 @@
 # Caching
 
-[Sigstickers Index](../README.md#sigstickers-index) /
-[Sigstickers](./index.md#sigstickers) /
-Caching
+[Sigstickers Index](../README.md#sigstickers-index) / [Sigstickers](./index.md#sigstickers) / Caching
 
 > Auto-generated documentation for [sigstickers.caching](../../../sigstickers/caching.py) module.
 
 - [Caching](#caching)
+  - [_verifyConvertedV1](#_verifyconvertedv1)
   - [createConverted](#createconverted)
   - [verifyConverted](#verifyconverted)
+
+## _verifyConvertedV1
+
+[Show source in caching.py:37](../../../sigstickers/caching.py#L37)
+
+Verify the cache for a packName using cache data
+
+#### Arguments
+
+data (dict[str, Any]) packName cache data to verify
+
+#### Returns
+
+- `bool` - if the converted cache has been verified
+
+#### Signature
+
+```python
+def _verifyConvertedV1(data: dict[str, Any]): ...
+```
+
+
 
 ## createConverted
 

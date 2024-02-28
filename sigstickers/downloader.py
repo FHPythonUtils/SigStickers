@@ -51,7 +51,9 @@ def saveSticker(sticker: Sticker, path: str) -> str:
 	return filePath
 
 
-async def downloadPack(packId: str, packKey: str, cwd: str = os.getcwd()) -> tuple[str, str]:
+async def downloadPack(
+	packId: str, packKey: str, cwd: str = os.getcwd()
+) -> tuple[str, str]:
 	"""Download a sticker pack.
 
 	Args:
@@ -81,7 +83,10 @@ async def downloadPack(packId: str, packKey: str, cwd: str = os.getcwd()) -> tup
 	print(f'Starting download of "{packName}" into {swd}')
 	with ThreadPoolExecutor(max_workers=4) as executor:
 		for i in as_completed(
-			[executor.submit(saveSticker, sticker, webpDir) for sticker in pack.stickers]
+			[
+				executor.submit(saveSticker, sticker, webpDir)
+				for sticker in pack.stickers
+			]
 		):
 			i.result()
 
@@ -102,7 +107,11 @@ def convertWithPIL(inputFile: str) -> str:
 
 	try:
 		img.save(
-			inputFile.replace("webp", "gif"), version="GIF89a", disposal=2, save_all=True, loop=0
+			inputFile.replace("webp", "gif"),
+			version="GIF89a",
+			disposal=2,
+			save_all=True,
+			loop=0,
 		)
 	except ValueError:
 		print(f"Failed to save {inputFile} as gif")
@@ -131,7 +140,9 @@ async def convertPack(swd: str, packName: str, noCache=False):
 	stickers = [opj(webpDir, i) for i in os.listdir(webpDir)]
 	total = len(stickers)
 	with ThreadPoolExecutor(max_workers=4) as executor:
-		for _ in as_completed([executor.submit(convertWithPIL, sticker) for sticker in stickers]):
+		for _ in as_completed(
+			[executor.submit(convertWithPIL, sticker) for sticker in stickers]
+		):
 			converted += 1
 	end = time.time()
 	print(f"Time taken to convert {converted}/{total} stickers - {end - start:.3f}s")

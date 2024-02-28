@@ -12,7 +12,9 @@ from .downloader import convertPack, downloadPack
 
 def cli():  # pragma: no cover
 	"""cli entry point"""
-	parser = argparse.ArgumentParser("Welcome to SigSticker, providing all of your sticker needs")
+	parser = argparse.ArgumentParser(
+		"Welcome to SigSticker, providing all of your sticker needs"
+	)
 	parser.add_argument(
 		"-p",
 		"--pack",
@@ -42,7 +44,9 @@ def cli():  # pragma: no cover
 		asyncio.run(
 			convertPack(
 				*asyncio.run(
-					downloadPack("".join(packAttrs["pack_id"]), "".join(packAttrs["pack_key"]))
+					downloadPack(
+						"".join(packAttrs["pack_id"]), "".join(packAttrs["pack_key"])
+					)
 				)
 			)
 		)

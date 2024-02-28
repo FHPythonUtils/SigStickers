@@ -24,20 +24,22 @@ readme = "README.md"
 python = "^3.8"
 Pillow = "<11,>=10.2.0"
 signalstickers-client = "<4,>=3.3.0"
-emoji = "<3,>=2.9.0"
+emoji = "<3,>=2.10.1"
 
 [tool.poetry.scripts]
 sigstickers = "sigstickers:cli"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^7.4.4"
-pylint = "^3.0.3"
+pytest = "^8.0.2"
+pylint = "^3.1.0"
 handsdown = "^2.1.0"
-coverage = "^7.4.0"
+coverage = "^7.4.3"
 
-[tool.black]
-line-length = 100
-target-version = ["py38"]
+[tool.ruff.format]
+indent-style = "tab"
+docstring-code-format = true
+line-ending = "lf"
+
 
 [tool.isort]
 profile = "black"

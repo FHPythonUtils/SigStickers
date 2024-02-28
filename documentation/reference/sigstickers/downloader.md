@@ -1,8 +1,6 @@
 # Downloader
 
-[Sigstickers Index](../README.md#sigstickers-index) /
-[Sigstickers](./index.md#sigstickers) /
-Downloader
+[Sigstickers Index](../README.md#sigstickers-index) / [Sigstickers](./index.md#sigstickers) / Downloader
 
 > Auto-generated documentation for [sigstickers.downloader](../../../sigstickers/downloader.py) module.
 
@@ -38,7 +36,7 @@ def assureDirExists(directory: str, root: str) -> str: ...
 
 ## convertPack
 
-[Show source in downloader.py:112](../../../sigstickers/downloader.py#L112)
+[Show source in downloader.py:121](../../../sigstickers/downloader.py#L121)
 
 Convert the webp images into png and gif images
 
@@ -58,7 +56,7 @@ async def convertPack(swd: str, packName: str, noCache=False): ...
 
 ## convertWithPIL
 
-[Show source in downloader.py:91](../../../sigstickers/downloader.py#L91)
+[Show source in downloader.py:96](../../../sigstickers/downloader.py#L96)
 
 Convert the webp file to png
 
