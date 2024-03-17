@@ -58,10 +58,7 @@ def _sanitize_filename(filename: str) -> str:
 	sanitized_filename = re.sub(r"[^\w\s.-]", "_", filename)
 	sanitized_filename = re.sub(r"\s+", "_", sanitized_filename)
 	sanitized_filename = sanitized_filename.strip(" .")
-	sanitized_filename = (
-		unicodedata.normalize("NFKD", sanitized_filename).encode("ascii", "ignore").decode()
-	)
-	return sanitized_filename
+	return unicodedata.normalize("NFKD", sanitized_filename).encode("ascii", "ignore").decode()
 
 
 async def download_pack(pack_id: str, pack_key: str, cwd: Path = Path.cwd()) -> tuple[Path, Path]:
@@ -138,7 +135,7 @@ def convert_with_pil(input_path: Path) -> list[str]:
 	return [png_file, gif_file]
 
 
-async def convert_pack(swd: Path, pack_name: Path, *, no_cache=False):
+async def convert_pack(swd: Path, pack_name: Path, *, no_cache=False) -> None:
 	"""Convert the webp images into png and gif images.
 
 	Args:

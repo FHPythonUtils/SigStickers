@@ -11,7 +11,7 @@ file_exists = "pyproject.toml"
 file_exists_2 = ".gitignore"
 
 
-def test_verify_converted_v1():
+def test_verify_converted_v1() -> None:
 	pack_name = "Test_Pack_v1"
 	cache_file = CACHE_DIR / pack_name
 	cache_data = {
@@ -23,7 +23,7 @@ def test_verify_converted_v1():
 	assert verify_converted(Path(pack_name))
 
 
-def test_verify_converted_v2():
+def test_verify_converted_v2() -> None:
 	pack_name = "Test_Pack_v2"
 	cache_file = CACHE_DIR / pack_name
 	cache_data = {
@@ -36,7 +36,7 @@ def test_verify_converted_v2():
 	assert verify_converted(Path(pack_name))
 
 
-def test_create_converted():
+def test_create_converted() -> None:
 	pack_name = "Test_Pack"
 	cache_data = {"example_key": "example_value"}
 

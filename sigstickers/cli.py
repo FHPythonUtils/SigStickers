@@ -1,6 +1,10 @@
 """Download sticker packs from Signal."""
+from __future__ import annotations
+
 import argparse
 import asyncio
+import functools
+import operator
 from sys import exit as sysexit
 from urllib import parse
 
@@ -21,7 +25,7 @@ def cli() -> None:
 	)
 	args = parser.parse_args()
 	# Get the packs
-	packs: list[str] = sum(args.pack or [[]], [])
+	packs: list[str] = functools.reduce(operator.iadd, args.pack or [[]], [])
 	if not packs:
 		packs = []
 		while True:
@@ -32,7 +36,7 @@ def cli() -> None:
 	return main(packs)
 
 
-def main(packs):
+def main(packs) -> None:
 	"""Main function to download sticker packs."""
 	for pack in packs:
 		pack_attrs: dict[str, list[str]] = parse.parse_qs(parse.urlparse(pack).fragment)

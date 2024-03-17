@@ -22,7 +22,7 @@ packs = [
 ]
 
 
-def test_downloadPack():
+def test_downloadPack() -> None:
 	swd, packName = asyncio.run(
 		downloader.download_pack(packs[0]["packId"], packs[0]["packKey"], cwd)
 	)
@@ -33,7 +33,7 @@ def test_downloadPack():
 	assert len(list(Path(f"{cwd}/downloads/DonutTheDog/webp").iterdir())) == packs[0]["len"]
 
 
-def test_convertPack():
+def test_convertPack() -> None:
 	swd, packName = asyncio.run(
 		downloader.download_pack(packs[0]["packId"], packs[0]["packKey"], cwd)
 	)
