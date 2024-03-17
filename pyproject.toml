@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sigstickers"
-version = "2024"
+version = "2024.1"
 license = "mit"
 description = "Download sticker packs from Signal"
 authors = ["FredHappyface"]
@@ -37,8 +37,6 @@ handsdown = "^2.1.0"
 coverage = "^7.4.4"
 pytest-asyncio = "^0.23.5.post1"
 
-
-
 [tool.ruff]
 line-length = 100
 indent-width = 4
@@ -72,6 +70,7 @@ line-ending = "lf"
 [tool.pyright]
 venvPath = "."
 venv = ".venv"
+
 [tool.tox]
 legacy_tox_ini = """
 [tox]

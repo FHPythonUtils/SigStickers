@@ -10,7 +10,7 @@
 
 ## cli
 
-[Show source in cli.py:12](../../../sigstickers/cli.py#L12)
+[Show source in cli.py:17](../../../sigstickers/cli.py#L17)
 
 CLI entry point.
 
@@ -24,12 +24,16 @@ def cli() -> None: ...
 
 ## main
 
-[Show source in cli.py:35](../../../sigstickers/cli.py#L35)
+[Show source in cli.py:40](../../../sigstickers/cli.py#L40)
 
-Main function to download sticker packs.
+Download, and convert sticker packs.
 
 #### Signature
 
 ```python
-def main(packs): ...
+def main(packs: list[str], cwd: Path = DEFAULT_CWD) -> int: ...
 ```
+
+#### See also
+
+- [DEFAULT_CWD](./downloader.md#default_cwd)

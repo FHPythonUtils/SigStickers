@@ -9,6 +9,7 @@ patch-level version changes can be found in [commit messages](../../commits/mast
 - use ruff
 - code quality improvements
 - fix 'Can't download packs with ":" (Colon) in it' - https://github.com/FHPythonUtils/SigStickers/issues/3
+- 98% test coverage
 
 ## 2024 - 2024/01/07
 

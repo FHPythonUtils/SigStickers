@@ -5,15 +5,16 @@ import argparse
 import asyncio
 import functools
 import operator
+from pathlib import Path
 from sys import exit as sysexit
 from urllib import parse
 
 from loguru import logger
 
-from sigstickers.downloader import convert_pack, download_pack
+from sigstickers.downloader import DEFAULT_CWD, convert_pack, download_pack
 
 
-def cli() -> None:
+def cli() -> None:  # pragma: no cover
 	"""CLI entry point."""
 	parser = argparse.ArgumentParser("Welcome to SigSticker, providing all of your sticker needs")
 	parser.add_argument(
@@ -33,11 +34,11 @@ def cli() -> None:
 			if not name:
 				break
 			packs.append(name)
-	return main(packs)
+	sysexit(main(packs))
 
 
-def main(packs) -> None:
-	"""Main function to download sticker packs."""
+def main(packs: list[str], cwd: Path = DEFAULT_CWD) -> int:
+	"""Download, and convert sticker packs."""
 	for pack in packs:
 		pack_attrs: dict[str, list[str]] = parse.parse_qs(parse.urlparse(pack).fragment)
 		if {"pack_id", "pack_key"} > pack_attrs.keys():
@@ -46,10 +47,11 @@ def main(packs) -> None:
 				"addstickers/#pack_id=9acc9e8aba563d26a4994e69263e3b25&"
 				"pack_key=5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
 			)
-			sysexit(1)
+			return 1
 
 		downloaded = asyncio.run(
-			download_pack("".join(pack_attrs["pack_id"]), "".join(pack_attrs["pack_key"]))
+			download_pack("".join(pack_attrs["pack_id"]), "".join(pack_attrs["pack_key"]), cwd=cwd)
 		)
 
 		asyncio.run(convert_pack(*downloaded))
+	return 0

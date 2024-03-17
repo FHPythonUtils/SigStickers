@@ -25,12 +25,12 @@ Get the appropriate cache verification function based on version.
 #### Returns
 
 -------
- - `callable` - Cache verification function
+ Callable[[dict[str, Any]], bool]: Cache verification function
 
 #### Signature
 
 ```python
-def _get_verify_function(version: int): ...
+def _get_verify_function(version: int) -> Callable[[dict[str, Any]], bool]: ...
 ```
 
 

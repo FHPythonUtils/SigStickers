@@ -16,6 +16,7 @@ from signalstickers_client.models.sticker import Sticker
 from sigstickers.caching import create_converted, verify_converted
 
 UNKNOWN = "🤷‍♂️"
+DEFAULT_CWD = Path.cwd()
 
 
 def assure_dir_exists(*parts: Path | str) -> Path:
@@ -61,7 +62,7 @@ def _sanitize_filename(filename: str) -> str:
 	return unicodedata.normalize("NFKD", sanitized_filename).encode("ascii", "ignore").decode()
 
 
-async def download_pack(pack_id: str, pack_key: str, cwd: Path = Path.cwd()) -> tuple[Path, Path]:
+async def download_pack(pack_id: str, pack_key: str, cwd: Path = DEFAULT_CWD) -> tuple[Path, Path]:
 	"""Download a sticker pack.
 
 	Args:
@@ -135,7 +136,7 @@ def convert_with_pil(input_path: Path) -> list[str]:
 	return [png_file, gif_file]
 
 
-async def convert_pack(swd: Path, pack_name: Path, *, no_cache=False) -> None:
+async def convert_pack(swd: Path, pack_name: Path, *, no_cache: bool = False) -> None:
 	"""Convert the webp images into png and gif images.
 
 	Args:
@@ -166,7 +167,8 @@ async def convert_pack(swd: Path, pack_name: Path, *, no_cache=False) -> None:
 			converted_files.append(converted.result())
 	end = time.time()
 	logger.info(
-		f"Time taken to convert {len(converted_files)}/{len(webp_files)} stickers - {end - start:.3f}s"
+		f"Time taken to convert {len(converted_files)}/{len(webp_files)} "
+		f"stickers - {end - start:.3f}s"
 	)
 
 	logger.info("")
@@ -175,10 +177,10 @@ async def convert_pack(swd: Path, pack_name: Path, *, no_cache=False) -> None:
 		data={
 			"version": 2,
 			"converted_files": converted_files,
-			"webp_files": files_to_str(webp_files),
+			"webp_files": _files_to_str(webp_files),
 		},
 	)
 
 
-def files_to_str(files: list[Path]) -> list[str]:
+def _files_to_str(files: list[Path]) -> list[str]:
 	return [str(x.absolute()) for x in files]

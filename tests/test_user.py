@@ -39,3 +39,11 @@ def test_convertPack() -> None:
 	)
 	asyncio.run(downloader.convert_pack(swd, packName, no_cache=True))
 	assert len(list(Path(f"{cwd}/downloads/DonutTheDog/png").iterdir())) == packs[0]["len"]
+
+
+def test_convertPack_cache() -> None:
+	swd, packName = asyncio.run(
+		downloader.download_pack(packs[0]["packId"], packs[0]["packKey"], cwd)
+	)
+	asyncio.run(downloader.convert_pack(swd, packName, no_cache=False))
+	assert len(list(Path(f"{cwd}/downloads/DonutTheDog/png").iterdir())) == packs[0]["len"]

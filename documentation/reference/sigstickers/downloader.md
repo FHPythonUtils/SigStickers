@@ -9,12 +9,11 @@
   - [convert_pack](#convert_pack)
   - [convert_with_pil](#convert_with_pil)
   - [download_pack](#download_pack)
-  - [files_to_str](#files_to_str)
   - [save_sticker](#save_sticker)
 
 ## assure_dir_exists
 
-[Show source in downloader.py:21](../../../sigstickers/downloader.py#L21)
+[Show source in downloader.py:22](../../../sigstickers/downloader.py#L22)
 
 Make the directory if it does not exist.
 
@@ -38,7 +37,7 @@ def assure_dir_exists(*parts: Path | str) -> Path: ...
 
 ## convert_pack
 
-[Show source in downloader.py:141](../../../sigstickers/downloader.py#L141)
+[Show source in downloader.py:139](../../../sigstickers/downloader.py#L139)
 
 Convert the webp images into png and gif images.
 
@@ -52,14 +51,14 @@ Convert the webp images into png and gif images.
 #### Signature
 
 ```python
-async def convert_pack(swd: Path, pack_name: Path, no_cache=False): ...
+async def convert_pack(swd: Path, pack_name: Path, no_cache: bool = False) -> None: ...
 ```
 
 
 
 ## convert_with_pil
 
-[Show source in downloader.py:107](../../../sigstickers/downloader.py#L107)
+[Show source in downloader.py:105](../../../sigstickers/downloader.py#L105)
 
 Convert the webp file to png.
 
@@ -83,7 +82,7 @@ def convert_with_pil(input_path: Path) -> list[str]: ...
 
 ## download_pack
 
-[Show source in downloader.py:67](../../../sigstickers/downloader.py#L67)
+[Show source in downloader.py:65](../../../sigstickers/downloader.py#L65)
 
 Download a sticker pack.
 
@@ -104,27 +103,19 @@ Download a sticker pack.
 
 ```python
 async def download_pack(
-    pack_id: str, pack_key: str, cwd: Path = Path.cwd()
+    pack_id: str, pack_key: str, cwd: Path = DEFAULT_CWD
 ) -> tuple[Path, Path]: ...
 ```
 
+#### See also
 
-
-## files_to_str
-
-[Show source in downloader.py:186](../../../sigstickers/downloader.py#L186)
-
-#### Signature
-
-```python
-def files_to_str(files: list[Path]) -> list[str]: ...
-```
+- [DEFAULT_CWD](#default_cwd)
 
 
 
 ## save_sticker
 
-[Show source in downloader.py:38](../../../sigstickers/downloader.py#L38)
+[Show source in downloader.py:39](../../../sigstickers/downloader.py#L39)
 
 Save a sticker.
 

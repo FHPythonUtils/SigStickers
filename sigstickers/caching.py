@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 from loguru import logger
 
@@ -93,7 +93,7 @@ def create_converted(pack_name: Path, data: dict) -> None:
 	cache.write_text(json.dumps(data), encoding="utf-8")
 
 
-def _get_verify_function(version: int):
+def _get_verify_function(version: int) -> Callable[[dict[str, Any]], bool]:
 	"""Get the appropriate cache verification function based on version.
 
 	Args:
@@ -102,7 +102,7 @@ def _get_verify_function(version: int):
 
 	Returns:
 	-------
-		callable: Cache verification function
+		Callable[[dict[str, Any]], bool]: Cache verification function
 
 	"""
 	return {
