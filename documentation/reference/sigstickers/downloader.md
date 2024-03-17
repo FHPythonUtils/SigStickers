@@ -13,7 +13,7 @@
 
 ## assure_dir_exists
 
-[Show source in downloader.py:22](../../../sigstickers/downloader.py#L22)
+[Show source in downloader.py:23](../../../sigstickers/downloader.py#L23)
 
 Make the directory if it does not exist.
 
@@ -37,7 +37,7 @@ def assure_dir_exists(*parts: Path | str) -> Path: ...
 
 ## convert_pack
 
-[Show source in downloader.py:139](../../../sigstickers/downloader.py#L139)
+[Show source in downloader.py:140](../../../sigstickers/downloader.py#L140)
 
 Convert the webp images into png and gif images.
 
@@ -58,7 +58,7 @@ async def convert_pack(swd: Path, pack_name: Path, no_cache: bool = False) -> No
 
 ## convert_with_pil
 
-[Show source in downloader.py:105](../../../sigstickers/downloader.py#L105)
+[Show source in downloader.py:106](../../../sigstickers/downloader.py#L106)
 
 Convert the webp file to png.
 
@@ -82,7 +82,7 @@ def convert_with_pil(input_path: Path) -> list[str]: ...
 
 ## download_pack
 
-[Show source in downloader.py:65](../../../sigstickers/downloader.py#L65)
+[Show source in downloader.py:66](../../../sigstickers/downloader.py#L66)
 
 Download a sticker pack.
 
@@ -115,7 +115,7 @@ async def download_pack(
 
 ## save_sticker
 
-[Show source in downloader.py:39](../../../sigstickers/downloader.py#L39)
+[Show source in downloader.py:40](../../../sigstickers/downloader.py#L40)
 
 Save a sticker.
 

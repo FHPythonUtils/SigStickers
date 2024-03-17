@@ -10,7 +10,7 @@
 
 ## cli
 
-[Show source in cli.py:17](../../../sigstickers/cli.py#L17)
+[Show source in cli.py:18](../../../sigstickers/cli.py#L18)
 
 CLI entry point.
 
@@ -24,7 +24,7 @@ def cli() -> None: ...
 
 ## main
 
-[Show source in cli.py:40](../../../sigstickers/cli.py#L40)
+[Show source in cli.py:41](../../../sigstickers/cli.py#L41)
 
 Download, and convert sticker packs.
 

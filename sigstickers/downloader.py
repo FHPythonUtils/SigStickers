@@ -1,4 +1,5 @@
 """Sticker download and convert functions used by the module entry point."""
+
 from __future__ import annotations
 
 import re

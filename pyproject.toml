@@ -71,6 +71,9 @@ line-ending = "lf"
 venvPath = "."
 venv = ".venv"
 
+[tool.coverage.run]
+branch = true
+
 [tool.tox]
 legacy_tox_ini = """
 [tox]
