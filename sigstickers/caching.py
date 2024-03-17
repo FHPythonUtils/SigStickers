@@ -3,58 +3,109 @@
 from __future__ import annotations
 
 import json
-import os
 from pathlib import Path
 from typing import Any
 
-if not Path(".cache").exists():
-	os.mkdir(".cache")
+from loguru import logger
+
+CACHE_DIR = Path(".cache")
+if not CACHE_DIR.exists():
+	CACHE_DIR.mkdir()
 
 
-def verifyConverted(packName: str) -> bool:
+def verify_converted(pack_name: Path) -> bool:
 	"""Verify the cache for a packName eg. "DonutTheDog". Uses the cache "version"
-	to call the verify function for that version
+	to call the verify function for that version.
 
 	Args:
-		packName (str): name of the sticker pack eg. "DonutTheDog"
+	----
+		pack_name (Path): name of the sticker pack eg. "DonutTheDog"
 
 	Returns:
+	-------
 		bool: if the converted cache has been verified
+
 	"""
-	cache = Path(f".cache/{packName}")
+	cache = CACHE_DIR / pack_name
 	if cache.exists():
 		data = json.loads(cache.read_text(encoding="utf-8"))
-		try:
-			if [None, _verifyConvertedV1][data["version"]](data):
-				print(f"-> Cache hit for {packName}!")
-				return True
-		except KeyError:
-			pass
-	print(f"-> Cache miss for {packName}!")
+		verify_func = _get_verify_function(data.get("version", 1))
+		if verify_func(data):
+			logger.info(f"-> Cache hit for {pack_name}!")
+			return True
+	logger.info(f"-> Cache miss for {pack_name}!")
 	return False
 
 
-def _verifyConvertedV1(data: dict[str, Any]):
-	"""Verify the cache for a packName using cache data
+def _verify_converted_v1(data: dict[str, Any]) -> bool:
+	"""Verify the cache for a packName using cache data.
 
 	Args:
-		data (dict[str, Any]) packName cache data to verify
+	----
+		data (dict[Path, Any]): packName cache data to verify
 
 	Returns:
+	-------
 		bool: if the converted cache has been verified
+
 	"""
-	return (
-		Path(f"{data['info']['swd']}/png").exists()
-		and data["converted"]["converted"] == data["converted"]["total"]
-	)
+	swd = data.get("info", {}).get("swd")
+	if swd:
+		png_dir = Path(swd) / "png"
+		return png_dir.exists() and data["converted"]["converted"] == data["converted"]["total"]
+	return False
 
 
-def createConverted(packName: str, data: dict):
-	"""Write cache data to a file identified by packName
+def _verify_converted_v2(data: dict[str, Any]) -> bool:
+	"""Verify the cache for a packName using cache data.
 
 	Args:
-		packName (str): name of the sticker pack eg. "DonutTheDog"
-		data (dict): packName cache data to write to cache
+	----
+		data (dict[Path, Any]): packName cache data to verify
+
+	Returns:
+	-------
+		bool: if the converted cache has been verified
+
 	"""
-	cache = Path(f".cache/{packName}")
+	webp_files: list[str] = data.get("webp_files", [])
+	converted_files: list[list[str]] = data.get("converted_files", [])
+
+	if len(webp_files) != len(converted_files):
+		return False
+
+	for x in webp_files + [item for sublist in converted_files for item in sublist]:
+		if not Path(x).is_file():
+			return False
+	return True
+
+
+def create_converted(pack_name: Path, data: dict) -> None:
+	"""Write cache data to a file identified by packName.
+
+	Args:
+	----
+		pack_name (Path): name of the sticker pack eg. "DonutTheDog"
+		data (dict): packName cache data to write to cache
+
+	"""
+	cache = CACHE_DIR / pack_name
 	cache.write_text(json.dumps(data), encoding="utf-8")
+
+
+def _get_verify_function(version: int):
+	"""Get the appropriate cache verification function based on version.
+
+	Args:
+	----
+		version (int): Cache version
+
+	Returns:
+	-------
+		callable: Cache verification function
+
+	"""
+	return {
+		1: _verify_converted_v1,
+		2: _verify_converted_v2,
+	}.get(version, _verify_converted_v1)

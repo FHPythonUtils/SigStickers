@@ -5,68 +5,123 @@
 > Auto-generated documentation for [sigstickers.caching](../../../sigstickers/caching.py) module.
 
 - [Caching](#caching)
-  - [_verifyConvertedV1](#_verifyconvertedv1)
-  - [createConverted](#createconverted)
-  - [verifyConverted](#verifyconverted)
+  - [_get_verify_function](#_get_verify_function)
+  - [_verify_converted_v1](#_verify_converted_v1)
+  - [_verify_converted_v2](#_verify_converted_v2)
+  - [create_converted](#create_converted)
+  - [verify_converted](#verify_converted)
 
-## _verifyConvertedV1
+## _get_verify_function
 
-[Show source in caching.py:37](../../../sigstickers/caching.py#L37)
+[Show source in caching.py:96](../../../sigstickers/caching.py#L96)
 
-Verify the cache for a packName using cache data
+Get the appropriate cache verification function based on version.
 
 #### Arguments
 
-data (dict[str, Any]) packName cache data to verify
+----
+ - `version` *int* - Cache version
 
 #### Returns
 
-- `bool` - if the converted cache has been verified
+-------
+ - `callable` - Cache verification function
 
 #### Signature
 
 ```python
-def _verifyConvertedV1(data: dict[str, Any]): ...
+def _get_verify_function(version: int): ...
 ```
 
 
 
-## createConverted
+## _verify_converted_v1
 
-[Show source in caching.py:52](../../../sigstickers/caching.py#L52)
+[Show source in caching.py:40](../../../sigstickers/caching.py#L40)
 
-Write cache data to a file identified by packName
+Verify the cache for a packName using cache data.
 
 #### Arguments
 
-- `packName` *str* - name of the sticker pack eg. "DonutTheDog"
-- `data` *dict* - packName cache data to write to cache
+----
+ data (dict[Path, Any]): packName cache data to verify
+
+#### Returns
+
+-------
+ - `bool` - if the converted cache has been verified
 
 #### Signature
 
 ```python
-def createConverted(packName: str, data: dict): ...
+def _verify_converted_v1(data: dict[str, Any]) -> bool: ...
 ```
 
 
 
-## verifyConverted
+## _verify_converted_v2
 
-[Show source in caching.py:14](../../../sigstickers/caching.py#L14)
+[Show source in caching.py:59](../../../sigstickers/caching.py#L59)
+
+Verify the cache for a packName using cache data.
+
+#### Arguments
+
+----
+ data (dict[Path, Any]): packName cache data to verify
+
+#### Returns
+
+-------
+ - `bool` - if the converted cache has been verified
+
+#### Signature
+
+```python
+def _verify_converted_v2(data: dict[str, Any]) -> bool: ...
+```
+
+
+
+## create_converted
+
+[Show source in caching.py:83](../../../sigstickers/caching.py#L83)
+
+Write cache data to a file identified by packName.
+
+#### Arguments
+
+----
+ - `pack_name` *Path* - name of the sticker pack eg. "DonutTheDog"
+ - `data` *dict* - packName cache data to write to cache
+
+#### Signature
+
+```python
+def create_converted(pack_name: Path, data: dict) -> None: ...
+```
+
+
+
+## verify_converted
+
+[Show source in caching.py:16](../../../sigstickers/caching.py#L16)
 
 Verify the cache for a packName eg. "DonutTheDog". Uses the cache "version"
-to call the verify function for that version
+to call the verify function for that version.
 
 #### Arguments
 
-- `packName` *str* - name of the sticker pack eg. "DonutTheDog"
+----
+ - `pack_name` *Path* - name of the sticker pack eg. "DonutTheDog"
 
 #### Returns
 
-- `bool` - if the converted cache has been verified
+-------
+ - `bool` - if the converted cache has been verified
 
 #### Signature
 
 ```python
-def verifyConverted(packName: str) -> bool: ...
+def verify_converted(pack_name: Path) -> bool: ...
 ```

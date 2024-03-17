@@ -5,121 +5,142 @@
 > Auto-generated documentation for [sigstickers.downloader](../../../sigstickers/downloader.py) module.
 
 - [Downloader](#downloader)
-  - [assureDirExists](#assuredirexists)
-  - [convertPack](#convertpack)
-  - [convertWithPIL](#convertwithpil)
-  - [downloadPack](#downloadpack)
-  - [saveSticker](#savesticker)
+  - [assure_dir_exists](#assure_dir_exists)
+  - [convert_pack](#convert_pack)
+  - [convert_with_pil](#convert_with_pil)
+  - [download_pack](#download_pack)
+  - [files_to_str](#files_to_str)
+  - [save_sticker](#save_sticker)
 
-## assureDirExists
+## assure_dir_exists
 
-[Show source in downloader.py:19](../../../sigstickers/downloader.py#L19)
+[Show source in downloader.py:21](../../../sigstickers/downloader.py#L21)
 
-Make the dir if not exists
+Make the directory if it does not exist.
 
 #### Arguments
 
-- `directory` *str* - the directory name
-- `root` *str* - the path of the root directory
+----
+ - `parts` *Path* - path parts
 
 #### Returns
 
-- `str` - the full path
+-------
+ - `Path` - the full path
 
 #### Signature
 
 ```python
-def assureDirExists(directory: str, root: str) -> str: ...
+def assure_dir_exists(*parts: Path | str) -> Path: ...
 ```
 
 
 
-## convertPack
+## convert_pack
 
-[Show source in downloader.py:121](../../../sigstickers/downloader.py#L121)
+[Show source in downloader.py:141](../../../sigstickers/downloader.py#L141)
 
-Convert the webp images into png and gif images
+Convert the webp images into png and gif images.
 
 #### Arguments
 
-- `swd` *str* - name of the directory to convert
-- `packName` *str* - name of the sticker pack (for cache + logging)
-- `noCache` *bool, optional* - set to true to disable cache. Defaults to False.
+----
+ - `swd` *Path* - name of the directory to convert
+ - `pack_name` *Path* - name of the sticker pack (for cache + logging)
+ - `no_cache` *bool, optional* - set to true to disable cache. Defaults to False.
 
 #### Signature
 
 ```python
-async def convertPack(swd: str, packName: str, noCache=False): ...
+async def convert_pack(swd: Path, pack_name: Path, no_cache=False): ...
 ```
 
 
 
-## convertWithPIL
+## convert_with_pil
 
-[Show source in downloader.py:96](../../../sigstickers/downloader.py#L96)
+[Show source in downloader.py:107](../../../sigstickers/downloader.py#L107)
 
-Convert the webp file to png
+Convert the webp file to png.
 
 #### Arguments
 
-- `inputFile` *str* - path to input file
+----
+ - `input_path` *Path* - path to input file
 
 #### Returns
 
-- `str` - path to input file
+-------
+ - `Path` - path to input file
 
 #### Signature
 
 ```python
-def convertWithPIL(inputFile: str) -> str: ...
+def convert_with_pil(input_path: Path) -> list[str]: ...
 ```
 
 
 
-## downloadPack
+## download_pack
 
-[Show source in downloader.py:54](../../../sigstickers/downloader.py#L54)
+[Show source in downloader.py:67](../../../sigstickers/downloader.py#L67)
 
 Download a sticker pack.
 
 #### Arguments
 
-- `packId` *str* - pack_id from url param. eg b676ec334ee2f771cadff5d095971e8c
-- `packKey` *str* - pack_key from url param. eg
-c957a57000626a2dc3cb69bf0e79c91c6b196b74d4d6ca1cbb830d3ad0ad4e36
-- `cwd` *str, optional* - set the current working directory
+----
+ - `pack_id` *Path* - pack_id from url param. eg b676ec334ee2f771cadff5d095971e8c
+ - `pack_key` *Path* - pack_key from url param. eg
+ c957a57000626a2dc3cb69bf0e79c91c6b196b74d4d6ca1cbb830d3ad0ad4e36
+ - `cwd` *Path, optional* - set the current working directory
 
 #### Returns
 
-- `tuple[str,` *str]* - sticker working directory and pack title
+-------
+ - `tuple[Path,` *Path]* - sticker working directory and pack title
 
 #### Signature
 
 ```python
-async def downloadPack(
-    packId: str, packKey: str, cwd: str = os.getcwd()
-) -> tuple[str, str]: ...
+async def download_pack(
+    pack_id: str, pack_key: str, cwd: Path = Path.cwd()
+) -> tuple[Path, Path]: ...
 ```
 
 
 
-## saveSticker
+## files_to_str
 
-[Show source in downloader.py:35](../../../sigstickers/downloader.py#L35)
-
-Save a sticker
-
-#### Arguments
-
-- `sticker` *Sticker* - the sticker object
-- `path` *str* - the path to write to
-
-#### Returns
-
-- `str` - the filepath the file was written to
+[Show source in downloader.py:186](../../../sigstickers/downloader.py#L186)
 
 #### Signature
 
 ```python
-def saveSticker(sticker: Sticker, path: str) -> str: ...
+def files_to_str(files: list[Path]) -> list[str]: ...
+```
+
+
+
+## save_sticker
+
+[Show source in downloader.py:38](../../../sigstickers/downloader.py#L38)
+
+Save a sticker.
+
+#### Arguments
+
+----
+ - `sticker` *Sticker* - the sticker object
+ - `path` *Path* - the path to write to
+
+#### Returns
+
+-------
+ - `Path` - the filepath the file was written to
+
+#### Signature
+
+```python
+def save_sticker(sticker: Sticker, path: Path) -> Path: ...
 ```

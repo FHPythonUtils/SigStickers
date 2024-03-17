@@ -12,10 +12,10 @@
 
 <img src="readme-assets/icons/name.png" alt="Project Icon" width="750">
 
-Download sticker packs from Signal
+The `sigstickers` package provides functionality for downloading and converting sticker packs from https://signal.art/addstickers (find packs at https://www.sigstick.com/). Download stickers in WebP format, and convert them to PNG and GIF formats, with caching the converted stickers for faster retrieval.
 
+- [Key Features](#key-features)
 - [Using](#using)
-	- [Help](#help)
 - [Formats](#formats)
 - [Documentation](#documentation)
 - [Install With PIP](#install-with-pip)
@@ -49,23 +49,80 @@ Download sticker packs from Signal
 	- [Support](#support)
 	- [Rationale](#rationale)
 
+## Key Features
+
+1. **Sticker Pack Downloading** from Signal from their https://signal.art/addstickers url
+2. **Sticker Pack Conversion** from the WebP format to PNG and GIF formats, making them compatible with various platforms and applications.
+3. **Caching Functionality** to store converted sticker images locally, reducing the need to re-convert them
+4. **Asynchronous Processing** for downloading and converting sticker packs
+
 ## Using
 
-- Get the URL of the Signal sticker pack
-- Run the program `python -m sigstickers`
-- Enter the URL of the sticker pack
-- Get the output in the `downloads` folder.
+1. Get the URL of the Signal sticker pack. In the form https://signal.art/addstickers (find packs at https://www.sigstick.com/)
 
-### Help
+2. Pass in multiple packs from the commandline with `-p/--pack`
 
-```sh
-usage: Welcome to SigSticker, providing all of your sticker needs [-h] [-p PACK [PACK ...]]
+	```bash
+	$ python -m sigstickers --help
+	usage: Welcome to SigSticker, providing all of your sticker needs [-h] [-p PACK [PACK ...]]
 
-optional arguments:
-  -h, --help            show this help message and exit
-  -p PACK [PACK ...], --pack PACK [PACK ...]
-                        Pass in a pack url inline
-```
+	options:
+	-h, --help            show this help message and exit
+	-p PACK [PACK ...], --pack PACK [PACK ...]
+							Pass in a pack URL inline
+
+	$ python -m sigstickers --pack 'https://signal.art/addstickers/#pack_id=b676ec334ee2f771cadff5d095971e8c&pack_key=c957a57000626a2dc3cb69bf0e79c91c6b196b74d4d6ca1cbb830d3ad0ad4e36'
+
+	2024-03-17 00:14:16.354 | INFO     | sigstickers.downloader:download_pack:82 - ============================================================
+	2024-03-17 00:14:16.805 | INFO     | sigstickers.downloader:download_pack:88 - Starting to scrape "DonutTheDog" ...
+	2024-03-17 00:14:16.812 | INFO     | sigstickers.downloader:download_pack:89 - Time taken to scrape 28 stickers - 0.999s
+	2024-03-17 00:14:16.813 | INFO     | sigstickers.downloader:download_pack:90 -
+	2024-03-17 00:14:16.816 | INFO     | sigstickers.downloader:download_pack:96 - ------------------------------------------------------------
+	2024-03-17 00:14:16.820 | INFO     | sigstickers.downloader:download_pack:97 - Starting download of "DonutTheDog" into ...\downloads\DonutTheDog
+	2024-03-17 00:14:16.894 | INFO     | sigstickers.downloader:convert_pack:151 - ------------------------------------------------------------
+	2024-03-17 00:14:16.897 | INFO     | sigstickers.caching:verify_converted:35 - -> Cache miss for DonutTheDog!
+	2024-03-17 00:14:16.905 | INFO     | sigstickers.downloader:convert_pack:163 - Converting stickers "DonutTheDog"...
+	2024-03-17 00:14:29.655 | INFO     | sigstickers.downloader:convert_pack:171 - Time taken to convert 28/28 stickers - 12.749s
+	2024-03-17 00:14:29.656 | INFO     | sigstickers.downloader:convert_pack:175 -
+	```
+
+3. OR. Enter the URL of the sticker pack
+
+	```bash
+	$ python -m sigstickers
+	Enter sticker_set URL (leave blank to stop): https://signal.art/addstickers/#pack_id=b676ec334ee2f771cadff5d095971e8c&pack_key=c957a57000626a2dc3cb69bf0e79c91c6b196b74d4d6ca1cbb830d3ad0ad4e36
+	Enter sticker_set URL (leave blank to stop):
+	2024-03-17 00:18:25.528 | INFO     | sigstickers.downloader:download_pack:82 - ============================================================
+	2024-03-17 00:18:26.415 | INFO     | sigstickers.downloader:download_pack:88 - Starting to scrape "DonutTheDog" ...
+	2024-03-17 00:18:26.417 | INFO     | sigstickers.downloader:download_pack:89 - Time taken to scrape 28 stickers - 0.885s
+	2024-03-17 00:18:26.420 | INFO     | sigstickers.downloader:download_pack:90 -
+	2024-03-17 00:18:26.426 | INFO     | sigstickers.downloader:download_pack:96 - ------------------------------------------------------------
+	2024-03-17 00:18:26.428 | INFO     | sigstickers.downloader:download_pack:97 - Starting download of "DonutTheDog" into ...\downloads\DonutTheDog
+	2024-03-17 00:18:26.497 | INFO     | sigstickers.downloader:convert_pack:151 - ------------------------------------------------------------
+	2024-03-17 00:18:26.524 | INFO     | sigstickers.caching:verify_converted:33 - -> Cache hit for DonutTheDog!
+	```
+
+4. Get the output in the `downloads` folder.
+
+	```powershell
+	$ ls .\downloads\DonutTheDog\
+
+	Mode                 LastWriteTime         Length Name
+	----                 -------------         ------ ----
+	d-----        17/03/2024     00꞉14                gif
+	d-----        17/03/2024     00꞉14                png
+	d-----        17/03/2024     00꞉08                webp
+
+	$ ls .\downloads\DonutTheDog\webp
+
+	Mode                 LastWriteTime         Length Name
+	----                 -------------         ------ ----
+	-a----        17/03/2024     00꞉18         285292 0+face_with_tears_of_joy+😂.webp
+	-a----        17/03/2024     00꞉18         271726 1+face_blowing_a_kiss+😘.webp
+	-a----        17/03/2024     00꞉18         306995 10+smiling_face_with_horns+😈.webp
+	-a----        17/03/2024     00꞉18         293578 11+partying_face+🥳.webp
+	-a----        17/03/2024     00꞉18         266627 12+angry_face+😠.webp
+	```
 
 ## Formats
 

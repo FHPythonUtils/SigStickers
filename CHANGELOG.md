@@ -3,6 +3,13 @@
 All major and minor version changes will be documented in this file. Details of
 patch-level version changes can be found in [commit messages](../../commits/master).
 
+## 2024.1 - 2024/03/17
+
+- update deps
+- use ruff
+- code quality improvements
+- fix 'Can't download packs with ":" (Colon) in it' - https://github.com/FHPythonUtils/SigStickers/issues/3
+
 ## 2024 - 2024/01/07
 
 - update dependencies
