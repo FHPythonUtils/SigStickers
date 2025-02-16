@@ -20,34 +20,13 @@ UNKNOWN = "🤷‍♂️"
 DEFAULT_CWD = Path.cwd()
 
 
-def assure_dir_exists(*parts: Path | str) -> Path:
-	"""Make the directory if it does not exist.
-
-	Args:
-	----
-		parts (Path): path parts
-
-	Returns:
-	-------
-		Path: the full path
-
-	"""
-	full_path = Path(*parts)
-	full_path.mkdir(parents=True, exist_ok=True)
-	return full_path
-
-
 def save_sticker(sticker: Sticker, path: Path) -> Path:
 	"""Save a sticker.
 
-	Args:
-	----
-		sticker (Sticker): the sticker object
-		path (Path): the path to write to
+	:param Sticker sticker: the sticker object
+	:param Path path: the path to write to
 
-	Returns:
-	-------
-		Path: the filepath the file was written to
+	:return Path: the filepath the file was written to
 
 	"""
 	sticker_emoji = sticker.emoji or UNKNOWN
@@ -66,16 +45,12 @@ def _sanitize_filename(filename: str) -> str:
 async def download_pack(pack_id: str, pack_key: str, cwd: Path = DEFAULT_CWD) -> tuple[Path, Path]:
 	"""Download a sticker pack.
 
-	Args:
-	----
-		pack_id (Path): pack_id from url param. eg b676ec334ee2f771cadff5d095971e8c
-		pack_key (Path): pack_key from url param. eg
+	:param Path pack_id: pack_id from url param. eg b676ec334ee2f771cadff5d095971e8c
+	:param Path pack_key: pack_key from url param. eg
 		c957a57000626a2dc3cb69bf0e79c91c6b196b74d4d6ca1cbb830d3ad0ad4e36
-		cwd (Path, optional): set the current working directory
+	:param Path, optional cwd: set the current working directory
 
-	Returns:
-	-------
-		tuple[Path, Path]: sticker working directory and pack title
+	:return tuple[Path, Path]: sticker working directory and pack title
 
 	"""
 	logger.info("=" * 60)
@@ -88,8 +63,10 @@ async def download_pack(pack_id: str, pack_key: str, cwd: Path = DEFAULT_CWD) ->
 		logger.info(f"Time taken to scrape {pack.nb_stickers} stickers - {end - start:.3f}s")
 		logger.info("")
 
-	swd = assure_dir_exists(cwd, "downloads", pack_name)
-	webp_dir = assure_dir_exists(swd, "webp")
+	swd = cwd / "downloads" / pack_name
+	swd.mkdir(parents=True, exist_ok=True)
+	webp_dir = swd / "webp"
+	webp_dir.mkdir(parents=True, exist_ok=True)
 
 	# Save the stickers
 	logger.info("-" * 60)
@@ -103,17 +80,12 @@ async def download_pack(pack_id: str, pack_key: str, cwd: Path = DEFAULT_CWD) ->
 	return swd, pack_name
 
 
-def convert_with_pil(input_path: Path) -> list[str]:
-	"""Convert the webp file to png.
+def convertWithPIL(input_path: Path) -> list[str]:
+	"""Convert a webp file to png and gif.
 
-	Args:
-	----
-		input_path (Path): path to input file
-
-	Returns:
-	-------
-		Path: path to input file
-
+	:param Path input_path: path to the input image/ sticker
+	:param set[str] formats: set of formats
+	:return list[str]: paths (as strings) of converted files
 	"""
 
 	input_file = input_path.as_posix()
@@ -137,25 +109,26 @@ def convert_with_pil(input_path: Path) -> list[str]:
 	return [png_file, gif_file]
 
 
-async def convert_pack(swd: Path, pack_name: Path, *, no_cache: bool = False) -> None:
+async def convert_pack(
+	swd: Path,
+	pack_name: Path,
+	*,
+	no_cache: bool = False,
+) -> None:
 	"""Convert the webp images into png and gif images.
 
-	Args:
-	----
-		swd (Path): name of the directory to convert
-		pack_name (Path): name of the sticker pack (for cache + logging)
-		no_cache (bool, optional): set to true to disable cache. Defaults to False.
-
+	:param Path swd: name of the directory to convert
+	:param Path pack_name: name of the sticker pack (for cache + logging)
+	:param bool, optional no_cache: set to true to disable cache. Defaults to False.
 	"""
 	logger.info("-" * 60)
 	if not no_cache and verify_converted(pack_name):
 		return
 
-	webp_dir = assure_dir_exists(swd, "webp")
-	assure_dir_exists(swd, "png")
-	assure_dir_exists(swd, "gif")
+	(swd / "png").mkdir(parents=True, exist_ok=True)
+	(swd / "gif").mkdir(parents=True, exist_ok=True)
 
-	webp_files = [file for file in webp_dir.iterdir() if file.is_file()]
+	webp_files = [file for file in (swd / "webp").iterdir() if file.is_file()]
 
 	# Convert stickers
 	start = time.time()
@@ -163,9 +136,9 @@ async def convert_pack(swd: Path, pack_name: Path, *, no_cache: bool = False) ->
 	converted_files = []
 	with ThreadPoolExecutor(max_workers=4) as executor:
 		for converted in as_completed(
-			[executor.submit(convert_with_pil, sticker) for sticker in webp_files]
+			[executor.submit(convertWithPIL, sticker) for sticker in webp_files]
 		):
-			converted_files.append(converted.result())
+			converted_files.extend(converted.result())
 	end = time.time()
 	logger.info(
 		f"Time taken to convert {len(converted_files)}/{len(webp_files)} "
@@ -184,4 +157,4 @@ async def convert_pack(swd: Path, pack_name: Path, *, no_cache: bool = False) ->
 
 
 def _files_to_str(files: list[Path]) -> list[str]:
-	return [str(x.absolute()) for x in files]
+	return [x.absolute().as_posix() for x in files]

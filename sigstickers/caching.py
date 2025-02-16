@@ -17,13 +17,8 @@ def verify_converted(pack_name: Path) -> bool:
 	"""Verify the cache for a packName eg. "DonutTheDog". Uses the cache "version"
 	to call the verify function for that version.
 
-	Args:
-	----
-		pack_name (Path): name of the sticker pack eg. "DonutTheDog"
-
-	Returns:
-	-------
-		bool: if the converted cache has been verified
+	:param Path pack_name: name of the sticker pack eg. "DonutTheDog"
+	:return bool: if the converted cache has been verified
 
 	"""
 	cache = CACHE_DIR / pack_name
@@ -40,13 +35,8 @@ def verify_converted(pack_name: Path) -> bool:
 def _verify_converted_v1(data: dict[str, Any]) -> bool:
 	"""Verify the cache for a packName using cache data.
 
-	Args:
-	----
-		data (dict[Path, Any]): packName cache data to verify
-
-	Returns:
-	-------
-		bool: if the converted cache has been verified
+	:param dict[Path, Any] data: packName cache data to verify
+	:return bool: if the converted cache has been verified
 
 	"""
 	swd = data.get("info", {}).get("swd")
@@ -59,13 +49,8 @@ def _verify_converted_v1(data: dict[str, Any]) -> bool:
 def _verify_converted_v2(data: dict[str, Any]) -> bool:
 	"""Verify the cache for a packName using cache data.
 
-	Args:
-	----
-		data (dict[Path, Any]): packName cache data to verify
-
-	Returns:
-	-------
-		bool: if the converted cache has been verified
+	:param dict[Path, Any] data: packName cache data to verify
+	:return bool: if the converted cache has been verified
 
 	"""
 	webp_files: list[str] = data.get("webp_files", [])
@@ -83,10 +68,8 @@ def _verify_converted_v2(data: dict[str, Any]) -> bool:
 def create_converted(pack_name: Path, data: dict) -> None:
 	"""Write cache data to a file identified by packName.
 
-	Args:
-	----
-		pack_name (Path): name of the sticker pack eg. "DonutTheDog"
-		data (dict): packName cache data to write to cache
+	:param Path pack_name: name of the sticker pack eg. "DonutTheDog"
+	:param dict data: packName cache data to write to cache
 
 	"""
 	cache = CACHE_DIR / pack_name
@@ -96,13 +79,8 @@ def create_converted(pack_name: Path, data: dict) -> None:
 def _get_verify_function(version: int) -> Callable[[dict[str, Any]], bool]:
 	"""Get the appropriate cache verification function based on version.
 
-	Args:
-	----
-		version (int): Cache version
-
-	Returns:
-	-------
-		Callable[[dict[str, Any]], bool]: Cache verification function
+	:param int version: Cache version
+	:return Callable[[dict[str, Any]], bool]: Cache verification function
 
 	"""
 	return {
