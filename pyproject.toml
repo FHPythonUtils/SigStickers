@@ -1,9 +1,11 @@
-[tool.poetry]
+[project]
 name = "sigstickers"
-version = "2024.1"
-license = "mit"
+version = "2025"
 description = "Download sticker packs from Signal"
-authors = ["FredHappyface"]
+authors = [{ name = "FredHappyface" }]
+requires-python = ">=3.8"
+readme = "README.md"
+license = "mit"
 classifiers = [
 	"Development Status :: 5 - Production/Stable",
 	"Intended Audience :: Developers",
@@ -15,28 +17,31 @@ classifiers = [
 	"Topic :: Utilities",
 	"Topic :: Multimedia :: Graphics",
 ]
-homepage = "https://github.com/FHPythonUtils/SigStickers"
-repository = "https://github.com/FHPythonUtils/SigStickers"
-documentation = "https://github.com/FHPythonUtils/SigStickers/blob/master/README.md"
-readme = "README.md"
+dependencies = [
+	"Pillow<11,>=10.2.0",
+	"signalstickers-client<4,>=3.3.0",
+	"emoji<3,>=2.10.1",
+	"loguru<2,>=0.7.2",
+]
 
-[tool.poetry.dependencies]
-python = "^3.8"
-Pillow = "<11,>=10.2.0"
-signalstickers-client = "<4,>=3.3.0"
-emoji = "<3,>=2.10.1"
-loguru = "<2,>=0.7.2"
+[project.urls]
+Homepage = "https://github.com/FHPythonUtils/SigStickers"
+Repository = "https://github.com/FHPythonUtils/SigStickers"
+Documentation = "https://github.com/FHPythonUtils/SigStickers/blob/master/README.md"
 
-[tool.poetry.scripts]
+[project.scripts]
 sigstickers = "sigstickers:cli"
 
-[tool.poetry.group.dev.dependencies]
-pytest = "^8.1.1"
-handsdown = "^2.1.0"
-coverage = "^7.4.4"
-ruff = "^0.3.3"
-pyright = "^1.1.354"
-pytest-asyncio = "^0.23.5.post1"
+[dependency-groups]
+dev = [
+	"pytest>=8.1.1,<9",
+	"handsdown>=2.1.0,<3",
+	"coverage>=7.4.4,<8",
+	"ruff>=0.3.3,<0.4",
+	"pyright>=1.1.354,<2",
+	"pytest-asyncio>=0.23.5.post1,<0.24",
+	"safety>=3.3.0",
+]
 
 [tool.ruff]
 line-length = 100
@@ -46,7 +51,6 @@ target-version = "py38"
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
-	"ANN101",  # type annotation for self in method
 	"COM812",  # enforce trailing comma
 	"D2",  # pydocstyle formatting
 	"ISC001",
@@ -79,6 +83,8 @@ branch = true
 legacy_tox_ini = """
 [tox]
 env_list =
+	py313
+	py312
 	py311
 	py310
 	py39

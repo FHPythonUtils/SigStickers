@@ -1,9 +1,6 @@
-README.rst
-requirements_optional.txt
-downloads/*
 
-# DepHell stuff
-poetry.lock
+downloads/*
+uv.lock
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
