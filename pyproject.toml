@@ -3,7 +3,7 @@ name = "sigstickers"
 version = "2025"
 description = "Download sticker packs from Signal"
 authors = [{ name = "FredHappyface" }]
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 readme = "README.md"
 license = "mit"
 classifiers = [
@@ -18,10 +18,10 @@ classifiers = [
 	"Topic :: Multimedia :: Graphics",
 ]
 dependencies = [
-	"Pillow<11,>=10.2.0",
-	"signalstickers-client<4,>=3.3.0",
-	"emoji<3,>=2.10.1",
-	"loguru<2,>=0.7.2",
+    "emoji>=2.14.1",
+    "loguru>=0.7.3",
+    "pillow>=11.1.0",
+    "signalstickers-client>=3.3.0",
 ]
 
 [project.urls]
@@ -34,13 +34,13 @@ sigstickers = "sigstickers:cli"
 
 [dependency-groups]
 dev = [
-	"pytest>=8.1.1,<9",
-	"handsdown>=2.1.0,<3",
-	"coverage>=7.4.4,<8",
-	"ruff>=0.3.3,<0.4",
-	"pyright>=1.1.354,<2",
-	"pytest-asyncio>=0.23.5.post1,<0.24",
-	"safety>=3.3.0",
+    "coverage>=7.6.12",
+    "handsdown>=2.1.0",
+    "pyright>=1.1.394",
+    "pytest>=8.3.4",
+    "pytest-asyncio>=0.25.3",
+    "ruff>=0.9.6",
+    "safety>=3.3.0",
 ]
 
 [tool.ruff]
