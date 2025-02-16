@@ -34,13 +34,12 @@ sigstickers = "sigstickers:cli"
 
 [dependency-groups]
 dev = [
-    "coverage>=7.6.12",
-    "handsdown>=2.1.0",
-    "pyright>=1.1.394",
-    "pytest>=8.3.4",
-    "pytest-asyncio>=0.25.3",
-    "ruff>=0.9.6",
-    "safety>=3.3.0",
+	"coverage>=7.6.12",
+	"handsdown>=2.1.0",
+	"pyright>=1.1.394",
+	"pytest>=8.3.4",
+	"ruff>=0.9.6",
+	"safety>=3.3.0",
 ]
 
 [tool.ruff]
@@ -51,13 +50,13 @@ target-version = "py38"
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
-	"COM812",  # enforce trailing comma
-	"D2",  # pydocstyle formatting
+	"COM812", # enforce trailing comma
+	"D2",     # pydocstyle formatting
 	"ISC001",
-	"N",  # pep8 naming
+	"N",      # pep8 naming
 	"PLR09",  # pylint refactor too many
-	"TCH",  # type check blocks
-	"W191"  # ignore this to allow tabs
+	"TCH",    # type check blocks
+	"W191",   # ignore this to allow tabs
 ]
 fixable = ["ALL"]
 
@@ -88,9 +87,13 @@ env_list =
 	py311
 	py310
 	py39
-	py38
 
 [testenv]
-deps = pytest
+deps =
+	pytest
 commands = pytest tests
 """
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
