@@ -103,7 +103,7 @@ def convertWithPIL(input_path: Path) -> list[str]:
 			save_all=True,
 			loop=0,
 		)
-	except ValueError:
+	except (ValueError, TypeError):
 		logger.error(f"Failed to save {input_file} as gif")
 		return [png_file]
 	return [png_file, gif_file]
